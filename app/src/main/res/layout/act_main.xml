@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topbar_local_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/commonColor"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:textColor="#FFFFFF"
+        >
+        <!--左 -->
+        <RelativeLayout
+            android:id="@+id/layout_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/back_white"/>
+        </RelativeLayout>
+        <!-- topbar的搜索-->
+        <EditText
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_toRightOf="@+id/layout_back"
+            android:background="@drawable/topbar_et_location_style"
+            android:drawablePadding="14dp"
+            android:drawableStart="@mipmap/icon_search"
+            android:gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingStart="20dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@drawable/et_cursor_style"
+            android:textSize="12sp"/>
+
+        <!--右 -->
+        <ImageView
+            android:id="@+id/img_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:background="@mipmap/right_map"/>
+
+    </RelativeLayout>
+    <!-- 代码中筛选器的高度是50dp，RecyclerView要留50dp给DropDownMenu-->
+    <com.demo.filter.DropDownMenu
+        android:id="@+id/dropDownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--DropDownMenu类中有个重写的onFinishInflate方法，
+        布局应该是com.yilaole.filter.DropDownMenu第一层子布局id-->
+        <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:id="@+id/layout_loaddata"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@id/mFilterRecyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--/>-->
+        <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+        <TextView
+            android:id="@+id/layout_loaddata"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </com.demo.filter.DropDownMenu>
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

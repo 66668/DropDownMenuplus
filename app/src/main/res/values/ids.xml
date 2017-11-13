@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 机构列表筛选-->
+    <item name="fixedTabIndicator" type="id"/>
+    <item name="mFilterRecyclerView" type="id"/><!-- 筛选器内部recyclerView的id-->
+</resources>

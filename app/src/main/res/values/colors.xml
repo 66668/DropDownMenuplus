@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff8b45</color>
+    <color name="colorPrimaryDark">#ff8b45</color>
+    <color name="colorAccent">#ff8b45</color>
+
+
+    <!-- 筛选-->
+    <color name="white">#FFFFFF</color>
+    <color name="black_p50">#7f000000</color>
+    <color name="gray_e7e7e7">#e7e7e7</color>
+    <color name="filter_layout_btn_bg">#f7f7f7</color>
+    <color name="b_c_fafafa">#fafafa</color>
+    <color name="commonColor">#ff8b45</color>
+    <color name="filter_default_tvcl">#5a626d</color>
+    <color name="filter_reset_tvcl">#999999</color>
+    <color name="home_gray_bg">#e2e0e0</color><!-- 首页灰色背景色-->
+    <color name="filter_press_btncl">#f59a55</color>
+</resources>

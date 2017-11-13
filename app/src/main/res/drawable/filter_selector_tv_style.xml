@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 内容中 选中的字体设置-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/commonColor" android:state_selected="true"/>
+    <item android:color="@color/commonColor" android:state_pressed="true"/>
+    <item android:color="@color/commonColor" android:state_checked="true"/>
+    <item android:color="@color/filter_default_tvcl"/>
+</selector>
