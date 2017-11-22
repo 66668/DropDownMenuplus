@@ -30,6 +30,6 @@ github上多个版本DropDownMenu的综合，补充了缺少的效果，修改�
 (5)省市等两级联动效果图：
 （这也是前辈大神的源码，没有改动，该处实现效果很好，没有发现bug，可以直接使用）
 
-<img width="450" height="800" src="https://github.com/66668/DropDownMenuplus/blob/master/gif/twolist.gif.gif"></img>
+<img width="450" height="800" src="https://github.com/66668/DropDownMenuplus/blob/master/gif/twolist.gif"></img>
 
 欢迎star fork
