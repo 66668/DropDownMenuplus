@@ -52,7 +52,7 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public DoubleGridView(Context context, AttributeSet attrs, int defStyleAttr,
-                                int defStyleRes) {
+                          int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
@@ -64,7 +64,6 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
         inflate(context, R.layout.act_filter_double_grid, this);
         ButterKnife.bind(this, this);
     }
-
 
 
     public DoubleGridView setmTopGridData(List<String> mTopGridData) {
@@ -81,7 +80,9 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
     public DoubleGridView build() {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 4);
+        //设置四列
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
             @Override
             public int getSpanSize(int position) {
                 if (position == 0 || position == mTopGridData.size() + 1) {
@@ -140,7 +141,7 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
         FilterUtils.instance().doubleGridBottom = mBottomSelectedTextView == null ? "" : (String) mBottomSelectedTextView.getTag();
 
         if (mOnFilterDoneListener != null) {
-            mOnFilterDoneListener.onFilterDone(3, "", "");
+            mOnFilterDoneListener.onFilterDone(1, "标题", "");
         }
     }
 
