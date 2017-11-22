@@ -73,19 +73,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
             @Override
             public void onPlaceCallbackListener(int provinceId, int cityId, int areaId) {
 
-                //                map.remove(Constants.FILTER_PROVINCE);
-                //                map.remove(Constants.FILTER_CITY);
-                //                map.remove(Constants.FILTER_TOWN);
-                //
-                //                map.put(Constants.FILTER_PROVINCE, provinceId);
-                //                map.put(Constants.FILTER_CITY, cityId);
-                //                map.put(Constants.FILTER_TOWN, areaId);
-                //
-                //                //首页定位的城市，需要删除
-                //                map.remove(Constants.FILTER_LOCATION_CITY);
-                //                map.put(Constants.FILTER_LOCATION_CITY, "");
-                //                //异步数据
-                //                loadListData();
+
                 ToastUtil.ToastShort(MainActivity.this, "省的id=" + provinceId + "--" + cityId + "--" + areaId);
             }
         });
@@ -94,27 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
             @Override
             public void onMultiFilterCallbackListener(int objId, int propertyId, int bedId, int typeId, String serviceId) {
 
-                //                MLog.e(InstitutionActivity.this, "MultiGridView回调给==DropMenuAdapter的结果=="
-                //                        + objId + "--" + propertyId + "--" + bedId + "--" + typeId + "--" + serviceId);
-                //
-                //                map.remove(Constants.FILTER_OBJECT);
-                //                map.remove(Constants.FILTER_PROPERTY);
-                //                map.remove(Constants.FILTER_BED);
-                //                map.remove(Constants.FILTER_TYPE);
-                //                map.remove(Constants.FILTER_FEATURE);
-                //
-                //                map.put(Constants.FILTER_OBJECT, objId);
-                //                map.put(Constants.FILTER_PROPERTY, propertyId);
-                //                map.put(Constants.FILTER_BED, bedId);
-                //                map.put(Constants.FILTER_TYPE, typeId);
-                //                map.put(Constants.FILTER_FEATURE, serviceId);
-                //
-                //                //首页定位的城市，需要删除
-                //                map.remove(Constants.FILTER_LOCATION_CITY);
-                //                map.put(Constants.FILTER_LOCATION_CITY, "");
-                //
-                //                //异步数据
-                //                loadListData();
+
                 ToastUtil.ToastShort(MainActivity.this, "多选的i依次是=" + objId + "--" + propertyId + "--" + bedId + "--" + typeId + "--" + serviceId);
             }
         });
@@ -124,11 +92,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
             @Override
             public void onPriceCallbackListener(InstitutionPriceBean item) {
 
-                //                map.remove(Constants.FILTER_PIRCE);
-                //                map.put(Constants.FILTER_PIRCE, item.getId());
-                //
-                //                //异步数据
-                //                loadListData();
+
                 ToastUtil.ToastShort(MainActivity.this, "价格=" + item.getName() + "--id=" + item.getId());
             }
         });
@@ -138,15 +102,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
             @Override
             public void onSortCallbackListener(int item) {
 
-                //                map.remove(Constants.FILTER_ORDER);
-                //                map.put(Constants.FILTER_ORDER, item);
-                //
-                //                //首页定位的城市，需要删除
-                //                map.remove(Constants.FILTER_LOCATION_CITY);
-                //                map.put(Constants.FILTER_LOCATION_CITY, "");
-                //
-                //                //异步数据
-                //                loadListData();
+
                 ToastUtil.ToastShort(MainActivity.this, "排序id=" + item);
             }
         });
@@ -171,6 +127,27 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
         places = new ArrayList<>();
         features = new ArrayList<>();
     }
+
+    /**
+     * 筛选器title的变化
+     * <p>
+     * 点击到选中的item，自动收回
+     *
+     * @param position
+     * @param positionTitle
+     * @param urlValue
+     */
+    @Override
+    public void onFilterDone(int position, String positionTitle, String urlValue) {
+        //数据显示到筛选标题中
+        dropDownMenu.setPositionIndicatorText(position, positionTitle);
+        dropDownMenu.close();
+    }
+
+
+    //**************************************************************************************************************************
+    //*******************************以下是假数据，正常是接口数据，demo中设置假数据方便演示****************************************
+    //**************************************************************************************************************************
 
     /**
      * 制作假数据
@@ -404,19 +381,15 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
             }
         }
 
-        //数据整合
+        //假数据整合，当成接口返回bean
         filterBean.setType((ArrayList<FilterBean.InstitutionPlace>) places);
         filterBean.setFeature((ArrayList<FilterBean.InstitutionFeature>) features);
         filterBean.setBed((ArrayList<FilterBean.Bed>) beds);
         filterBean.setObject((ArrayList<FilterBean.InstitutionObject>) objectbeans);
         filterBean.setProperty((ArrayList<FilterBean.PlaceProperty>) propertyBeans);
+        filterBean.setPrice((ArrayList<InstitutionPriceBean>) priceBeans);
 
         filterBean.setProvince((ArrayList<ProvinceBean>) provinceBeans);
     }
 
-    //筛选器选中后，数据回调
-    @Override
-    public void onFilterDone(int position, String positionTitle, String urlValue) {
-
-    }
 }
