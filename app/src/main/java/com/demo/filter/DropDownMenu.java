@@ -3,6 +3,7 @@ package com.demo.filter;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -119,7 +120,9 @@ public class DropDownMenu extends RelativeLayout implements View.OnClickListener
     public void setPositionView() {
         int count = mMenuAdapter.getMenuCount();
         for (int position = 0; position < count; ++position) {
+            long start = System.currentTimeMillis();
             setPositionView(position, findViewAtPosition(position), mMenuAdapter.getBottomMargin(position));
+//            Log.d("DropDownMenu", "每次构建view耗时=" + (System.currentTimeMillis() - start)+"ms");
         }
     }
 
