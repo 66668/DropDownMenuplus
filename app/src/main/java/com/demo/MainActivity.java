@@ -2,7 +2,9 @@ package com.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.demo.demobean.AreaBean;
 import com.demo.demobean.CityBean;
@@ -19,9 +21,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnFilterDoneListener {
 
+    //控件
     DropDownMenu dropDownMenu;
-
-    TextView layout_loaddata;
+    LinearLayout layout_loaddata;
     //数据
     private FilterBean filterBean;//总数据源
     private List<ProvinceBean> provinceBeans;//省
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
         setContentView(R.layout.act_main);
         dropDownMenu = findViewById(R.id.dropDownMenu);
         layout_loaddata = findViewById(R.id.layout_loaddata);
+
         initView();
         initData();
 
@@ -68,8 +71,6 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
         dropMenuAdapter.setOnPlaceCallbackListener(new DropMenuAdapter.OnPlaceCallbackListener() {
             @Override
             public void onPlaceCallbackListener(int provinceId, int cityId, int areaId) {
-
-
                 ToastUtil.ToastShort(MainActivity.this, "省的id=" + provinceId + "--" + cityId + "--" + areaId);
             }
         });
@@ -387,5 +388,84 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
 
         filterBean.setProvince((ArrayList<ProvinceBean>) provinceBeans);
     }
+
+    /**
+     * 模拟数据更新
+     *
+     * @return
+     */
+    private List<ProvinceBean> updateFilter01() {
+        List<ProvinceBean> provinceBeans = new ArrayList<>();
+        List<CityBean> cityBeans = new ArrayList<>();
+        List<AreaBean> areaBeans = new ArrayList<>();
+        //区数据
+        for (int i = 0; i < 10; i++) {
+            AreaBean bean = new AreaBean();
+            if (i == 0) {
+                bean.setId(i);
+                bean.setName("不限");
+                bean.setPid("没用String");
+
+                areaBeans.add(bean);
+            } else {
+                bean.setId(i);
+                bean.setName("更新区" + i);
+                bean.setPid("没用String");
+
+                areaBeans.add(bean);
+            }
+        }
+
+        MLog.d("区的数据:" + areaBeans.size());
+
+        //市数据
+        for (int i = 0; i < 10; i++) {
+            CityBean bean = new CityBean();
+            if (i == 0) {
+                bean.setId(i);
+                bean.setName("不限");
+                bean.setPid("没用String");
+
+                cityBeans.add(bean);
+
+                //添加区数据
+                bean.setChild((ArrayList<AreaBean>) areaBeans);
+            } else {
+                bean.setId(i);
+                bean.setName("更新市" + i);
+                bean.setPid("没用String");
+
+                cityBeans.add(bean);
+                //添加区数据
+                bean.setChild((ArrayList<AreaBean>) areaBeans);
+            }
+        }
+
+        //省数据
+        for (int i = 0; i < 10; i++) {
+            ProvinceBean bean = new ProvinceBean();
+            if (i == 0) {
+                bean.setId(i);
+                bean.setName("不限");
+                bean.setPid("没用String");
+
+                provinceBeans.add(bean);
+
+                //省份添加市数据
+                bean.setChild((ArrayList<CityBean>) cityBeans);
+            } else {
+                bean.setId(i);
+                bean.setName("更新省" + i);
+                bean.setPid("没用String");
+
+                provinceBeans.add(bean);
+                //省份添加市数据
+                bean.setChild((ArrayList<CityBean>) cityBeans);
+            }
+        }
+        return provinceBeans;
+
+    }
+
 
 }

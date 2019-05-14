@@ -62,7 +62,7 @@ public class DropDownMenu extends RelativeLayout implements View.OnClickListener
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        //
+        //TODO,需要绑定自定义控件的第一个子布局id：layout_loaddata
         setContentView(findViewById(R.id.layout_loaddata));//mFilterRecyclerView layout_loaddata
     }
 
