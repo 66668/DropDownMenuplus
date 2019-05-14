@@ -9,20 +9,18 @@ import com.demo.R;
 import com.demo.filter.util.DpUtils;
 import com.demo.filter.view.FilterCheckedTextView;
 
-import butterknife.ButterKnife;
-
 
 /**
  *
  */
 public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-    private final FilterCheckedTextView textView;
+    private FilterCheckedTextView textView;
     private View.OnClickListener mListener;
+    private View view;
 
     public ItemViewHolder(Context mContext, ViewGroup parent, View.OnClickListener mListener) {
         super(DpUtils.infalte(mContext, R.layout.holder_item, parent));
-        textView = ButterKnife.findById(itemView, R.id.tv_item);
         this.mListener = mListener;
     }
 
@@ -33,8 +31,9 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
      * @param tag
      */
     public void bind(String s, Object tag) {
-        textView.setText(s);
-        textView.setTag(tag);
-        textView.setOnClickListener(mListener);
+        textView = (FilterCheckedTextView)itemView.findViewById(R.id.tv_item);
+        ((FilterCheckedTextView) textView).setText(s);
+        ((FilterCheckedTextView) textView).setTag(tag);
+        ((FilterCheckedTextView) textView).setOnClickListener(mListener);
     }
 }

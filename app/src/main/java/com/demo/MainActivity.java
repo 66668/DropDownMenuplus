@@ -17,15 +17,10 @@ import com.demo.other.ToastUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AppCompatActivity implements OnFilterDoneListener {
 
-    @BindView(R.id.dropDownMenu)
     DropDownMenu dropDownMenu;
 
-    @BindView(R.id.layout_loaddata)
     TextView layout_loaddata;
     //数据
     private FilterBean filterBean;//总数据源
@@ -48,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
-        ButterKnife.bind(this);
+        dropDownMenu = findViewById(R.id.dropDownMenu);
+        layout_loaddata = findViewById(R.id.layout_loaddata);
         initView();
         initData();
 

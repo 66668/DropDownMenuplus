@@ -8,8 +8,6 @@ import com.demo.R;
 import com.demo.filter.util.DpUtils;
 import com.demo.filter.view.FilterCheckedTextView;
 
-import butterknife.ButterKnife;
-
 /**
  *
  */
@@ -19,7 +17,6 @@ public class MultiItemHolder extends RecyclerView.ViewHolder {
 
     public MultiItemHolder(Context mContext, ViewGroup parent) {
         super(DpUtils.infalte(mContext, R.layout.holder_item, parent));
-        textView = ButterKnife.findById(itemView, R.id.tv_item);
     }
 
     /**
@@ -29,7 +26,8 @@ public class MultiItemHolder extends RecyclerView.ViewHolder {
      * @param tag
      */
     public void bind(String s, Object tag) {
-        textView.setText(s);
-        textView.setTag(tag);
+        textView = (FilterCheckedTextView) itemView.findViewById(R.id.tv_item);
+        ((FilterCheckedTextView) textView).setText(s);
+        ((FilterCheckedTextView) textView).setTag(tag);
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.demo.R;
@@ -20,19 +21,16 @@ import com.demo.other.ToastUtil;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
  * 多个girdView的筛选
  * <p>
  * 本app只做了5个list的适配，若是更多，可根据样式自行修改
  */
-public class MultiGridView<FirstBean, SeconBean, ThirdBean, ForthBean, FifthBean> extends LinearLayout {
+public class MultiGridView<FirstBean, SeconBean, ThirdBean, ForthBean, FifthBean> extends LinearLayout implements View.OnClickListener {
 
-    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    Button bt_confirm;
+    Button bt_reset;
 
     private Context mcontext;
     private MultiGridAdapter multiGridAdapter;
@@ -82,8 +80,10 @@ public class MultiGridView<FirstBean, SeconBean, ThirdBean, ForthBean, FifthBean
     private void init(Context context) {
         setBackgroundColor(Color.WHITE);
         //布局
-        inflate(context, R.layout.act_filter_double_grid, this);
-        ButterKnife.bind(this, this);
+        View view = inflate(context, R.layout.act_filter_double_grid, this);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        bt_reset = view.findViewById(R.id.bt_reset);
+        bt_confirm = view.findViewById(R.id.bt_confirm);
     }
 
     //01设置 筛选视图收起 回调
@@ -137,7 +137,7 @@ public class MultiGridView<FirstBean, SeconBean, ThirdBean, ForthBean, FifthBean
                         || position == ((obj_list.size() + 1) + (property_list.size() + 1))//机构床位标题位置
                         || position == ((obj_list.size() + 1) + (property_list.size() + 1) + (bed_list.size() + 1))//机构类型标题位置
                         || position == ((obj_list.size() + 1) + (property_list.size() + 1) + (bed_list.size() + 1) + (type_list.size() + 1))//机构特色标题位置
-                        ) {
+                ) {
                     return 20;//
 
                 }
@@ -176,13 +176,15 @@ public class MultiGridView<FirstBean, SeconBean, ThirdBean, ForthBean, FifthBean
                 serviceId = serviceID;
             }
         });
+        //添加按钮点击监听
+        bt_confirm.setOnClickListener(this);
+        bt_reset.setOnClickListener(this);
         return this;
     }
 
     //设置 选中条件 返回监听
-
-    @OnClick({R.id.bt_confirm, R.id.bt_reset})
-    public void clickDone(View view) {
+    @Override
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_confirm://确定
 

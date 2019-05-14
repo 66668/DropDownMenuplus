@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,17 +19,13 @@ import com.demo.filter.util.FilterUtils;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 /**
  * 两个gridView的筛选
  */
 public class DoubleGridView extends LinearLayout implements View.OnClickListener {
 
-    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    Button bt_confirm;
 
     private List<String> mTopGridData;//第一个数据
     private List<String> mBottomGridList;//第二个数据
@@ -61,8 +58,9 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
     private void init(Context context) {
         setBackgroundColor(Color.WHITE);
         //布局
-        inflate(context, R.layout.act_filter_double_grid, this);
-        ButterKnife.bind(this, this);
+        View view = inflate(context, R.layout.act_filter_double_grid, this);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        bt_confirm = view.findViewById(R.id.bt_confirm);
     }
 
 
@@ -94,7 +92,8 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
 
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(new DoubleGridAdapter(getContext(), mTopGridData, mBottomGridList, this));
-
+        //button监听
+        bt_confirm.setOnClickListener(this);
         return this;
     }
 
@@ -119,6 +118,13 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
             }
             mTopSelectedTextView = textView;
             textView.setSelected(true);
+        } else if (v == bt_confirm) {//
+            FilterUtils.instance().doubleGridTop = mTopSelectedTextView == null ? "" : (String) mTopSelectedTextView.getTag();
+            FilterUtils.instance().doubleGridBottom = mBottomSelectedTextView == null ? "" : (String) mBottomSelectedTextView.getTag();
+
+            if (mOnFilterDoneListener != null) {
+                mOnFilterDoneListener.onFilterDone(1, "标题", "");
+            }
         } else {
             if (mBottomSelectedTextView != null) {
                 mBottomSelectedTextView.setSelected(false);
@@ -133,17 +139,4 @@ public class DoubleGridView extends LinearLayout implements View.OnClickListener
         mOnFilterDoneListener = listener;
         return this;
     }
-
-    @OnClick(R.id.bt_confirm)
-    public void clickDone() {
-
-        FilterUtils.instance().doubleGridTop = mTopSelectedTextView == null ? "" : (String) mTopSelectedTextView.getTag();
-        FilterUtils.instance().doubleGridBottom = mBottomSelectedTextView == null ? "" : (String) mBottomSelectedTextView.getTag();
-
-        if (mOnFilterDoneListener != null) {
-            mOnFilterDoneListener.onFilterDone(1, "标题", "");
-        }
-    }
-
-
 }

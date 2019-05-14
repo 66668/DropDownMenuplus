@@ -76,13 +76,13 @@ public class DropMenuAdapter implements MenuAdapter {
         switch (position) {
             case 0://省市区 三级联动
 
-                view = createDoubleListView();//前辈的省市两级联动
+//                view = createDoubleListView();//前辈的省市两级联动
 
-                //                view = createThreeListView();
+                view = createThreeListView();
                 break;
             case 1://多筛选
-                view = createDoubleGrid();//前辈的两个条件的筛选
-                //                view = createMutiGrid();
+//                view = createDoubleGrid();//前辈的两个条件的筛选
+                view = createMutiGrid();
                 break;
             case 2://价格
                 view = createSingleGridView();
