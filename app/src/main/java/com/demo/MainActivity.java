@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
                 areaBeans.add(bean);
             } else {
                 bean.setId(i);
-                bean.setName("区" + i);
+                bean.setName("房间" + i);
                 bean.setPid("没用String");
 
                 areaBeans.add(bean);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
                 bean.setChild((ArrayList<AreaBean>) areaBeans);
             } else {
                 bean.setId(i);
-                bean.setName("市" + i);
+                bean.setName("楼层" + i);
                 bean.setPid("没用String");
 
                 cityBeans.add(bean);
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements OnFilterDoneListe
                 bean.setChild((ArrayList<CityBean>) cityBeans);
             } else {
                 bean.setId(i);
-                bean.setName("省" + i);
+                bean.setName("单元号" + i);
                 bean.setPid("没用String");
 
                 provinceBeans.add(bean);

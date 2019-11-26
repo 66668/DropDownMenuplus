@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 //apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.demo"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,11 +27,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:26.+'
-    implementation 'com.android.support:support-v4:26.+'
-    //metrial design的支持包
-    implementation 'com.android.support:design:26.+'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+
+    implementation 'com.android.support:design:28.0.0' //metrial design的支持包
+
     //使用butterknife注解(正常三步：（1）project/build.gradle（2）module该处添加依赖（3）下载插件android-butterknife-zelezny，然后才能正常使用)
 //    implementation 'com.jakewharton:butterknife:10.1.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
